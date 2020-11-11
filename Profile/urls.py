@@ -5,5 +5,5 @@ from rest_framework import routers, serializers, viewsets
 from .views import ProfileUserModelView
 
 urlpatterns = [
-    re_path(r'^', ProfileUserModelView.as_view())
+    re_path(r'^profile_url', ProfileUserModelView.as_view())
 ]
