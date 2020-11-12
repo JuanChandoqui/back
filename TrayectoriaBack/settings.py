@@ -14,6 +14,7 @@ from pathlib import Path
 from decouple import config
 from decouple import Csv
 import dj_database_url
+import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -107,6 +108,8 @@ DATABASES = {
         default=config('DATABASE_URL')
     )
 }
+
+psycopg2.connect(config('DATABASE_URL'), sslmode='require')
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
