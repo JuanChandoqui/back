@@ -10,8 +10,6 @@ class ProfileModel(models.Model):
     def __str__ (self):
         return self.user
 
-
-
 class ProfileUser(models.Model):
     profileModel = models.ForeignKey(ProfileModel, on_delete=models.CASCADE)
     first_name = models.CharField(max_length = 255, null=False)

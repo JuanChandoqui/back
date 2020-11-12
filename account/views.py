@@ -7,21 +7,20 @@ from rest_framework import status
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework import viewsets
-from .models import AccountUser
-from .serializers import AccountUserModelSerializers
+from .models import AccountModel
+from .serializers import AccountModelSerializers
 
-class AccountUserModelView(ObtainAuthToken, APIView):
-
+class AccountModelView(ObtainAuthToken, APIView):
     #GET REQUEST
     def get(self, request, format=None):  
         #usernames = [user.age for user in ProfileUser.objects.all()]   
-        usernames = AccountUser.objects.all()
-        serializer = AccountUserModelSerializers(usernames, many=True)
+        usernames = AccountModel.objects.all()
+        serializer = AccountModelSerializers(usernames, many=True)
         return Response(serializer.data)
 
     #POST REQUEST
     def post(self, request, format=None):
-        serializer = AccountUserModelSerializers(data=request.data)
+        serializer = AccountModelSerializers(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -34,7 +33,7 @@ class AccountUserModelView(ObtainAuthToken, APIView):
         except user.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        serializer = AccountUserModelSerializers(user, data=request.data)
+        serializer = AccountModelSerializers(user, data=request.data)
 
         if serializer.is_valid():
             serializer.save()

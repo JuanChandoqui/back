@@ -1,9 +1,9 @@
 from rest_framework  import serializers
 
 # Modelos
-from .models import AccountUser
+from .models import AccountModel
 
-class AccountUserModelSerializers(serializers.ModelSerializer):
+class AccountModelSerializers(serializers.ModelSerializer):
     class Meta:
-        model = AccountUser
+        model = AccountModel
         fields = ('__all__')
