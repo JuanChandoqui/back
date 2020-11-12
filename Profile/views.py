@@ -13,7 +13,6 @@ from .serializers import ProfileUserModelSerializers
 
 class ProfileUserModelView(ObtainAuthToken, APIView):
 
-
     #GET REQUEST
     def get(self, request, format=None):  
         #usernames = [user.age for user in ProfileUser.objects.all()]   
