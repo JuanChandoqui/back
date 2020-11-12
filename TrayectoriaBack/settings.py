@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Dashboard',
     'account',
     'Profile',
+    'user',
 ]
 
 SITE_ID = 1
