@@ -10,7 +10,7 @@ from rest_framework import viewsets
 from .models import AccountsModel, AccountUser
 from .serializers import AccountModelSerializers, AccountUserSerializers
 
-class AccountModelView(ObtainAuthToken, APIView):
+class AccountModelView(ObtainAuthToken):
      def get(self, request, format=None):  
         #usernames = [user.age for user in ProfileUser.objects.all()]   
         usernames = AccountsModel.objects.all()
