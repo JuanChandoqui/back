@@ -7,8 +7,6 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-from Profile.views import ProfileUserModelView
-
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -28,7 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^', include(router.urls)),
     re_path(r'^api/v1/login/', include('Login.urls')),
-    re_path(r'^api/v1/profile/', include('Profile.urls')),
     re_path(r'^api/v1/account/', include('account.urls')),
     re_path(r'^api/v1/user/', include('user.urls')),
 ]

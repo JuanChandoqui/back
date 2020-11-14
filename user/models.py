@@ -12,7 +12,7 @@ class UserModel(models.Model):
         return self.user
 
 class UserProfile(models.Model):
-    userModel = models.ForeignKey(UserModel, on_delete=models.SET(-1))
+    userModel = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     first_name = models.CharField(max_length = 255, null=False)
     last_name = models.CharField(max_length = 255, null=False)
     email = models.CharField(max_length = 255, null=False)
