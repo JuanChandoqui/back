@@ -12,13 +12,10 @@ from rest_framework import viewsets
 from .models import UserModel, UserProfile
 from .serializers import UserModelSerializers, UserProfileSerializers
 
-from django.http import Http404
-from django.core.exceptions import ObjectDoesNotExist
 
-class UserModelView(ObtainAuthToken, APIView):
+class UserModelView(ObtainAuthToken):
     
-    def get(self, request, format=None):  
-        #usernames = [user.age for user in ProfileUser.objects.all()]   
+    def get(self, request, format=None):   
         usernames = UserModel.objects.all()
         serializer = UserModelSerializers(usernames, many=True)
         return Response(serializer.data)
@@ -41,12 +38,9 @@ class UserProfileView(ObtainAuthToken):
     
     #PUT REQUEST
     def put(self, request, *args, **kwargs):
-    #def put(request, pk, format=None):
         try:
             user = self.kwargs.get('pk')
-            #user = UserProfile.objects.get(pk=pk)
         except user.DoesNotExist:
-        #except UserProfile.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         serializer = UserProfileSerializers(user, data=request.data)
@@ -65,16 +59,3 @@ class UserProfileView(ObtainAuthToken):
 
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-'''
-@api_view(['DELETE'])
-def deleteUserView(request, pk, format=None):
-    try:
-        user = UserProfile.objects.get(id=pk)
-    except UserProfile.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'DELETE':
-        user.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-'''

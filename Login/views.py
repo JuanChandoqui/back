@@ -6,7 +6,7 @@ from rest_framework import status
 #Modelo User
 from django.contrib.auth.models import User
 
-from .serializers import UserRegisterSerializers
+#from .serializers import UserRegisterSerializers
 
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -22,7 +22,7 @@ class CustomAuthToken(ObtainAuthToken):
             'email': user.email
         })
 
-
+'''
 class RegisterView(ObtainAuthToken):   
     #POST REQUEST
     def post(self, request, format=None):
@@ -32,3 +32,4 @@ class RegisterView(ObtainAuthToken):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+'''
