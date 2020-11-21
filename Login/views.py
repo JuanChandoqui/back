@@ -6,8 +6,6 @@ from rest_framework import status
 #Modelo User
 from django.contrib.auth.models import User
 
-#from .serializers import UserRegisterSerializers
-
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
@@ -21,15 +19,3 @@ class CustomAuthToken(ObtainAuthToken):
             'user_id': user.pk,
             'email': user.email
         })
-
-'''
-class RegisterView(ObtainAuthToken):   
-    #POST REQUEST
-    def post(self, request, format=None):
-        serializer = UserRegisterSerializers(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-'''

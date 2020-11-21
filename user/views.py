@@ -64,11 +64,12 @@ class UserProfileView(ObtainAuthToken):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     #DELETE REQUEST
-    def delete(pk, format=None):
-        try:
-            user = UserProfile.objects.get(id=pk) #<----- pk lo reconoce como objeto, no como int, si se coloca un entero, lo reconocera
-        except UserProfile.DoesNotExist:         
-            return Response(status=status.HTTP_404_NOT_FOUND)
+    def delete(self, request, *args, **kwargs):
+        id = request.data.get("id")  
+        print(id)          
+        user = UserProfile.objects.get(id=id) 
 
-        user.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if(user != None):
+            user.delete()
+            return Response("Usuario Eliminado")       
+        return Response("Usuario no encontrado")
