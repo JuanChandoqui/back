@@ -41,27 +41,35 @@ class UserModelView(ObtainAuthToken):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 class UserProfileView(ObtainAuthToken):
     #GET REQUEST
     def get(self, request, format=None):  
         usernames = UserProfile.objects.all()
         serializer = UserProfileSerializers(usernames, many=True)
         return Response(serializer.data)
-    
-    #PUT REQUEST
-    def put(self, request, *args, **kwargs):
-        try:
-            user = self.kwargs.get('pk')
-        except user.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
 
-        serializer = UserProfileSerializers(user, data=request.data)
-
+    #POST REQUEST
+    def post(self, request, format=None):
+        serializer = UserProfileSerializers(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    
+    #POST REQUEST
+    def put(self, request, *args, **kwargs):
+        id = request.data.get("id")  
+        print(id)
+        user = UserProfile.objects.get(id=id)
+        serializer = UserProfileSerializers(user, data=request.data)
+            
+        if serializer.is_valid():
+            serializer.save()
+            return Response("Update successful")
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
 
     #DELETE REQUEST
     def delete(self, request, *args, **kwargs):
