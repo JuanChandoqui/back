@@ -23,7 +23,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 #Amazon
-ALLOWED_HOSTS = ['3.81.233.219',]
+ALLOWED_HOSTS = ['*']
 
 # Application definitio
 
