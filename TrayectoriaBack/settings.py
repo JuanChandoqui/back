@@ -25,6 +25,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 #Amazon
 ALLOWED_HOSTS = ['3.81.233.219']
 
+SECURE_SSL_REDIRECT=False
+
 # Application definitio
 
 INSTALLED_APPS = [
