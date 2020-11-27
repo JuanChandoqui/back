@@ -25,8 +25,6 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 #Amazon
 ALLOWED_HOSTS = ['3.81.233.219']
 
-SECURE_SSL_REDIRECT=False
-
 # Application definitio
 
 INSTALLED_APPS = [
@@ -157,4 +155,15 @@ STATIC_URL = '/static/'
 try:
     from TrayectoriaBack.local_settings import *
 except ImportError:
-    pass 
+    pass
+
+CORS_REPLACE_HTTPS_REFERER      = False
+HOST_SCHEME                     = "http://"
+SECURE_PROXY_SSL_HEADER         = None
+SECURE_SSL_REDIRECT             = False
+SESSION_COOKIE_SECURE           = False
+CSRF_COOKIE_SECURE              = False
+SECURE_HSTS_SECONDS             = None
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
+SECURE_FRAME_DENY               = False
+
