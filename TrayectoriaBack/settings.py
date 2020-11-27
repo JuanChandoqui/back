@@ -22,11 +22,8 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-#Heroku
-#ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-
 #Amazon
-ALLOWED_HOSTS = ['3.81.233.219']
+ALLOWED_HOSTS = ['3.81.233.219',]
 
 # Application definitio
 
@@ -104,15 +101,6 @@ WSGI_APPLICATION = 'TrayectoriaBack.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-#AMAZON DATABASE - HEROKU
-'''
-DATABASES = {
-    'default' : dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
-'''
 
 #AMAZON AWS
 DATABASES = {
