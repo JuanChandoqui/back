@@ -1,24 +1,20 @@
+from rest_framework import generics, permissions
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.authtoken.models import Token
-
-from django.shortcuts import render
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.authtoken.models import Token
+from .serializers import UserSerializer, RegisterSerializer
 
-from .serializers import UserRegisterSerializers
+# Register API
+class RegisterAPI(generics.GenericAPIView, ObtainAuthToken):
+    serializer_class = RegisterSerializer
 
-# Create your views here.
-class RegisterView(ObtainAuthToken):   
-    #PUT REQUEST
-    def put(self, request, *args, **kwargs):
-        try:
-            user = self.kwargs.get('pk')
-        except user.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-        serializer = UserRegisterSerializers(user, data=request.data)
-
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        token = Token.objects.create(user=user)
+        print(token.key)
+        return Response({
+        "user": UserSerializer(user, context=self.get_serializer_context()).data,
+        "token": token.key,
+        })
