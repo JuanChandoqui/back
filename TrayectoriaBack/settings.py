@@ -25,8 +25,6 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 #Amazon
 ALLOWED_HOSTS = ['3.81.233.219']
 
-#Heroku
-#ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Application definitio
 
 INSTALLED_APPS = [
