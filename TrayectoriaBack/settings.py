@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'TrayectoriaBack.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-'''
+
 #AMAZON AWS
 DATABASES = {
     'default': {
@@ -115,14 +115,16 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432'
     }
-=======
+}
+
 '''
 #AMAZON DATABASE - HEROKU
 DATABASES = {
-    'default' : dj_database_url.config(
+   'default' : dj_database_url.config(
         default=config('DATABASE_URL')
     )
 }
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
