@@ -69,17 +69,19 @@ class UserProfileView(ObtainAuthToken):
             return Response("Update successful")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     '''
-    def put(self, request, *args, **kwargs):
-        idUsuario = request.data.get("id")
-        print(idUsuario)
-        user = UserProfile.objects.get(id=request.data.get("id"))
-        user.first_name = request.data.get("first_name")
-        user.last_name = request.data.get("last_name")
-        user.age = request.data.get("age")
-        user.email = request.data.get("email")
+    def put(self, request):
+        id = request.data.get("id")
+        print(id)       
+        user = UserProfile.objects.get(id=id)
         
-        user.save()
-        return Response("Exito")
+        if(user != None):
+            user.first_name = request.data.get("first_name")
+            user.last_name = request.data.get("last_name")
+            user.age = request.data.get("age")
+            user.email = request.data.get("email")
+            user.save()      
+            return Response("Exito")
+        return Response("Usuario No encontrado")
     
     #DELETE REQUEST
     def delete(self, request, *args, **kwargs):
