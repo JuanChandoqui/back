@@ -22,14 +22,11 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-<<<<<<< HEAD
 #Amazon
 ALLOWED_HOSTS = ['3.81.233.219']
-=======
-#Heroku
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
->>>>>>> staging
 
+#Heroku
+#ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Application definitio
 
 INSTALLED_APPS = [
@@ -107,8 +104,7 @@ WSGI_APPLICATION = 'TrayectoriaBack.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-<<<<<<< HEAD
+'''
 #AMAZON AWS
 DATABASES = {
     'default': {
@@ -120,12 +116,12 @@ DATABASES = {
         'PORT': '5432'
     }
 =======
+'''
 #AMAZON DATABASE - HEROKU
 DATABASES = {
     'default' : dj_database_url.config(
         default=config('DATABASE_URL')
     )
->>>>>>> staging
 }
 
 # Password validation
