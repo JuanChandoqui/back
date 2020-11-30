@@ -1,1 +1,1 @@
-python manage.py runserver 7000 --settings=TrayectoriaBack.settings.development
+python manage.py runserver 8000 --settings=TrayectoriaBack.settings.development
