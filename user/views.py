@@ -73,15 +73,12 @@ class UserProfileView(ObtainAuthToken):
         id = request.data.get("id")
         print(id)       
         user = UserProfile.objects.get(id=id)
-        
-        if(user != None):
-            user.first_name = request.data.get("first_name")
-            user.last_name = request.data.get("last_name")
-            user.age = request.data.get("age")
-            user.email = request.data.get("email")
-            user.save()      
-            return Response("Exito")
-        return Response("Usuario No encontrado")
+        user.first_name = request.data.get("first_name")
+        user.last_name = request.data.get("last_name")
+        user.age = request.data.get("age")
+        user.email = request.data.get("email")
+        user.save()      
+        return Response("Exito")
     
     #DELETE REQUEST
     def delete(self, request, *args, **kwargs):
