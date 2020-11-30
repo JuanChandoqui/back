@@ -22,8 +22,13 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
+<<<<<<< HEAD
 #Amazon
 ALLOWED_HOSTS = ['3.81.233.219']
+=======
+#Heroku
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+>>>>>>> staging
 
 # Application definitio
 
@@ -44,13 +49,14 @@ INSTALLED_APPS = [
     'Dashboard',
     'account',
     'user',
+    'register',
 ]
 
 SITE_ID = 1
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.IsAuthenticated',),
-    'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.TokenAuthentication',),
+    'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.TokenAuthentication'),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     "DEFAULT_GENERATOR_CLASS": "rest_framework.schemas.generators.BaseSchemaGenerator",
     'PAGE_SIZE': 100
@@ -102,6 +108,7 @@ WSGI_APPLICATION = 'TrayectoriaBack.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+<<<<<<< HEAD
 #AMAZON AWS
 DATABASES = {
     'default': {
@@ -112,6 +119,13 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432'
     }
+=======
+#AMAZON DATABASE - HEROKU
+DATABASES = {
+    'default' : dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+>>>>>>> staging
 }
 
 # Password validation
