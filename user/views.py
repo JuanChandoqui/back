@@ -28,19 +28,6 @@ class UserModelView(ObtainAuthToken):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def put(self, request, *args, **kwargs):
-        try:
-            user = self.kwargs.get('pk')
-        except user.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-        serializer = UserModelSerializers(user, data=request.data)
-
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 class UserProfileView(ObtainAuthToken):
     #GET REQUEST
     def get(self, request, format=None):  
@@ -68,7 +55,6 @@ class UserProfileView(ObtainAuthToken):
             serializer.save()
             return Response("Update successful")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    '''
 
     def put(self, request,  *args, **kwargs):
         request.data.get("id")
@@ -81,7 +67,7 @@ class UserProfileView(ObtainAuthToken):
         user.email = request.data.get("email")
         user.save()      
         return Response("Usuario Actualizado")
-
+    '''
 
     #DELETE REQUEST
     def delete(self, request, *args, **kwargs):

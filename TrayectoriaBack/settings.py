@@ -42,7 +42,6 @@ INSTALLED_APPS = [
 
     #debajo de dashboard, agregar los componentes que se van agregando
     'Dashboard',
-    'account',
     'user',
     'register',
 ]
