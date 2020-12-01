@@ -55,13 +55,13 @@ class UserProfileView(ObtainAuthToken):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     '''
-    #POST REQUEST
-    def put(self, request, format=None):
-        id = request.data.get("id")  
+    #PUT REQUEST
+    def put(self, request, *args, **kwargs):
+        id = request.data.get('id') 
+        id = id
         print(id)
-        user = UserProfile.objects.get(id=id)
+        user = UserProfile.objects.get(id=id) 
         serializer = UserProfileSerializers(user, data=request.data)
             
         if serializer.is_valid():
@@ -69,7 +69,9 @@ class UserProfileView(ObtainAuthToken):
             return Response("Update successful")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     '''
-    def put(self, request):
+
+    def put(self, request,  *args, **kwargs):
+        request.data.get("id")
         id = request.data.get("id")
         print(id)       
         user = UserProfile.objects.get(id=id)
@@ -78,8 +80,9 @@ class UserProfileView(ObtainAuthToken):
         user.age = request.data.get("age")
         user.email = request.data.get("email")
         user.save()      
-        return Response("Exito")
-    
+        return Response("Usuario Actualizado")
+
+
     #DELETE REQUEST
     def delete(self, request, *args, **kwargs):
         id = request.data.get("id")  
