@@ -27,6 +27,5 @@ urlpatterns = [
     path('', include('register.urls')),
     re_path(r'^', include(router.urls)),
     re_path(r'^api/v1/login/', include('Login.urls')),
-    re_path(r'^api/v1/account/', include('account.urls')),
     re_path(r'^api/v1/user/', include('user.urls')),
 ]
