@@ -1,10 +1,5 @@
-from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import authentication, permissions
-from django.contrib.auth.models import User
 from rest_framework import status
-
-from rest_framework.decorators import api_view
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -55,9 +50,8 @@ class UserProfileView(ObtainAuthToken):
             serializer.save()
             return Response("Update successful")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def put(self, request,  *args, **kwargs):
-        request.data.get("id")
+    '''
+    def put(self, request):
         id = request.data.get("id")
         print(id)       
         user = UserProfile.objects.get(id=id)
@@ -67,10 +61,9 @@ class UserProfileView(ObtainAuthToken):
         user.email = request.data.get("email")
         user.save()      
         return Response("Usuario Actualizado")
-    '''
 
     #DELETE REQUEST
-    def delete(self, request, *args, **kwargs):
+    def delete(self, request):
         id = request.data.get("id")  
         print(id)          
         user = UserProfile.objects.get(id=id) 
