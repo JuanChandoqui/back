@@ -39,7 +39,6 @@ class UserProfileView(ObtainAuthToken):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request):      
-        print(id)       
         user = UserProfile.objects.get(id=request.data.get("id"))
         user.first_name = request.data.get("first_name")
         user.last_name = request.data.get("last_name")
@@ -50,8 +49,7 @@ class UserProfileView(ObtainAuthToken):
 
     #DELETE REQUEST
     def delete(self, request):
-        id = request.data.get("id")  
-        print(id)          
+        id = request.data.get("id")          
         user = UserProfile.objects.get(id=id) 
 
         if(user != None):
