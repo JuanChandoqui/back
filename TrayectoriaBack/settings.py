@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     #debajo de dashboard, agregar los componentes que se van agregando
     'Dashboard',
     'user',
-    'register',
+    'account',
 ]
 
 SITE_ID = 1
