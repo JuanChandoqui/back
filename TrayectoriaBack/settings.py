@@ -23,7 +23,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 #Amazon
-ALLOWED_HOSTS = ['18.205.238.139']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # Application definitio
 
@@ -106,11 +106,11 @@ WSGI_APPLICATION = 'TrayectoriaBack.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'webdb',
-        'USER': 'webuserdb',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'NAME': config('NAMEDB'),
+        'USER': config('USERDB'),
+        'PASSWORD': config('PASSWORDDB'),
+        'HOST': config('HOSTDB'),
+        'PORT': config('PORTDB')
     }
 }
 
