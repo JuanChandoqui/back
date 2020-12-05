@@ -56,19 +56,7 @@ class UserProfileView(ObtainAuthToken):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    '''
-    #POST REQUEST
-    def put(self, request, format=None):
-        id = request.data.get("id")  
-        print(id)
-        user = UserProfile.objects.get(id=id)
-        serializer = UserProfileSerializers(user, data=request.data)
-            
-        if serializer.is_valid():
-            serializer.save()
-            return Response("Update successful")
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    '''
+    #PUT REQUEST
     def put(self, request):
         id = request.data.get("id")
         print(id)       
